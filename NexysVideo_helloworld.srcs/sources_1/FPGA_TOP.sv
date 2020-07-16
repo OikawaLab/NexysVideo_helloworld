@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module FPGA_TOP (
    input        SYSCLK, //-- 100MHz xtal input.
    input        CPU_RESETN, //-- Reset button, active low.
@@ -40,6 +39,16 @@ module FPGA_TOP (
 
    output [1:0] SET_VADJ,
    output       VADJ_EN
+   );
+   
+   //
+   // Microblaze system.
+   //
+   MCU_wrapper mcu (
+       .CPU_RESETN(CPU_RESETN),
+       .SYSCLK(SYSCLK),
+       .UART_rxd(), //input
+       .UART_txd()  //output
    );
 endmodule // FPGA_TOP
 
